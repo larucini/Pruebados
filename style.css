@@ -343,8 +343,8 @@ nav.scrolled {
 
 /* ─── RESEÑAS / CARRUSEL ─────────────────────── */
 .crs-reviews {
-  background: var(--cream);
-  padding: 0 0 110px;
+  background: #332116;
+  padding: 70px 0 110px;
   overflow: hidden;
 }
 .crs-reviews-header {
@@ -359,7 +359,7 @@ nav.scrolled {
   font-size: clamp(24px, 2.6vw, 36px);
   letter-spacing: -0.03em;
   line-height: 1.2;
-  color: var(--espresso);
+  color: var(--cream);
 }
 .crs-reviews-carousel {
   position: relative;
@@ -382,13 +382,14 @@ nav.scrolled {
   flex: 0 0 auto;
   width: min(1220px, 84vw);
   box-sizing: border-box;
-  border: 1px solid rgba(57,47,40,0.18);
+  border: 1px solid rgba(239,236,227,0.25);
   border-radius: 28px;
-  background: var(--cream);
+  background: #332116;
   padding: 56px 64px 44px;
   display: flex;
   flex-direction: column;
   opacity: 0.4;
+  box-shadow: inset 0 0 70px rgba(239,236,227,0.08);
   transition: opacity 0.55s ease;
 }
 .crs-review-card.active {
@@ -407,7 +408,7 @@ nav.scrolled {
   font-weight: 400;
   font-size: 21px;
   line-height: 1.55;
-  color: var(--espresso);
+  color: var(--cream);
   max-width: 880px;
   margin-bottom: 28px;
 }
@@ -415,7 +416,7 @@ nav.scrolled {
   font-family: 'Raleway', sans-serif;
   font-weight: 600;
   font-size: 14px;
-  color: var(--espresso);
+  color: var(--cream);
 }
 .crs-review-city {
   font-family: 'Raleway', sans-serif;
@@ -423,7 +424,7 @@ nav.scrolled {
   font-size: 10px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(57,47,40,0.42);
+  color: rgba(239,236,227,0.5);
   margin-top: 4px;
 }
 .crs-reviews-arrow {
@@ -460,6 +461,60 @@ nav.scrolled {
   .crs-reviews-arrow { width: 40px; height: 40px; }
   .crs-reviews-arrow-left { left: 10px; }
   .crs-reviews-arrow-right { right: 10px; }
+}
+
+/* ─── MARQUEE — separador editorial ─────────── */
+.crs-marquee {
+  background: var(--cream);
+  border-top: 1px solid rgba(57,47,40,0.16);
+  border-bottom: 1px solid rgba(57,47,40,0.16);
+  overflow: hidden;
+  padding: 24px 0;
+  margin-top: 130px;
+}
+.crs-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: crs-marquee-scroll 95s linear infinite;
+}
+.crs-marquee-group {
+  display: flex;
+  align-items: baseline;
+  flex-shrink: 0;
+}
+.crs-marquee-item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 12px;
+  white-space: nowrap;
+  margin: 0 36px;
+}
+.crs-marquee-main {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 58.8px;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  color: var(--espresso);
+}
+.crs-marquee-accent {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 63px;
+  color: var(--espresso);
+}
+@keyframes crs-marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (max-width: 430px) {
+  .crs-marquee { padding: 20px 0; margin-top: 60px; }
+  .crs-marquee-item { margin: 0 20px; gap: 8px; }
+  .crs-marquee-main { font-size: 36px; }
+  .crs-marquee-accent { font-size: 40px; }
 }
 
 /* ─── CONCEPTO ──────────────────────────────── */
