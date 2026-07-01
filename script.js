@@ -207,3 +207,80 @@ document.addEventListener('DOMContentLoaded', () => {
   }, 1700);
 
 });
+
+// ── Equipo: hover-swap entre instructores ─────
+function initTeamSwap() {
+  const root = document.getElementById('crs-team');
+  if (!root) return;
+
+  const nameButtons = Array.from(root.querySelectorAll('.crs-team-name'));
+  const initialsEl  = document.getElementById('crs-team-initials');
+  const roleEl      = document.getElementById('crs-team-role');
+  const statsEl     = document.getElementById('crs-team-stats');
+
+  const instructors = [
+    {
+      name: 'Tomás Ferrero',
+      initials: 'TF',
+      role: 'Maestro restaurador de mobiliario',
+      stats: [
+        { num: '+5', label: 'Años de<br>experiencia' },
+        { num: 'Especialista', label: 'en estructuras y<br>uniones tradicionales', word: true },
+        { num: '2019', label: 'Formando<br>restauradores' },
+      ],
+    },
+    {
+      name: 'Lucía Bianchi',
+      initials: 'LB',
+      role: 'Diseñadora industrial y restauradora',
+      stats: [
+        { num: '+8', label: 'Años de<br>experiencia' },
+        { num: 'Especialista', label: 'en diseño de<br>mobiliario funcional', word: true },
+        { num: '2017', label: 'Formando<br>restauradores' },
+      ],
+    },
+    {
+      name: 'Santiago Ruíz',
+      initials: 'SR',
+      role: 'Ebanista y especialista en maderas macizas',
+      stats: [
+        { num: '+10', label: 'Años de<br>experiencia' },
+        { num: 'Especialista', label: 'en maderas macizas<br>y ebanistería fina', word: true },
+        { num: '2016', label: 'Formando<br>restauradores' },
+      ],
+    },
+  ];
+
+  function renderStats(stats) {
+    statsEl.innerHTML = stats.map(s => `
+      <div class="crs-team-stat">
+        <span class="crs-team-stat-num${s.word ? ' is-word' : ''}">${s.num}</span>
+        <span class="crs-team-stat-label">${s.label}</span>
+      </div>
+    `).join('');
+  }
+
+  function setActive(i) {
+    nameButtons.forEach((btn, bi) => btn.classList.toggle('is-active', bi === i));
+
+    const data = instructors[i];
+    // Fundido corto para que el cambio de contenido no se sienta como un corte.
+    [initialsEl, roleEl, statsEl].forEach(el => el.classList.add('crs-team-swap-fade'));
+
+    setTimeout(() => {
+      initialsEl.textContent = data.initials;
+      roleEl.textContent = data.role;
+      renderStats(data.stats);
+      [initialsEl, roleEl, statsEl].forEach(el => el.classList.remove('crs-team-swap-fade'));
+    }, 150);
+  }
+
+  nameButtons.forEach((btn, i) => {
+    btn.addEventListener('mouseenter', () => setActive(i));
+    btn.addEventListener('focus', () => setActive(i));
+  });
+
+  // Estado inicial: primer instructor.
+  renderStats(instructors[0].stats);
+}
+document.addEventListener('DOMContentLoaded', initTeamSwap);
